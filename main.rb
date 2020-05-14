@@ -11,8 +11,22 @@ students_formated = students.map do |student|
  
   { first_name: first, last_name: last }
 end
-p students_formated
+
  # create a new array of hashes with key first_name and last_name
+students_formated.shuffle!
+
+#this creates the groups.  Need a group array and the i +1 takes the index+1 to create the group number
+groups = []
+5.times do |i|
+  groups.push({ name: "group #{i + 1}", members: [students_formated.pop, students_formated.pop] })
+end
+
+#this handles the last person since we have an odd number
+index = rand(groups.size)
+groups[index][:members].push(students_formated.pop)
+
+ puts groups
+ puts students_formated.size
 
  # with new array, randomly select people and assign to groups
 
