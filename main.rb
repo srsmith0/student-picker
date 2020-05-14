@@ -15,6 +15,7 @@ end
  # create a new array of hashes with key first_name and last_name
 students_formated.shuffle!
 
+ # with new array, randomly select people and assign to groups
 #this creates the groups.  Need a group array and the i +1 takes the index+1 to create the group number
 groups = []
 5.times do |i|
@@ -25,9 +26,15 @@ end
 index = rand(groups.size)
 groups[index][:members].push(students_formated.pop)
 
- puts groups
- puts students_formated.size
 
- # with new array, randomly select people and assign to groups
-
- # print out groups in a slack friendly format
+# print out groups in a slack friendly format
+# we will use a map array because it creates a new array.  it won't change the data but print it out in an easily readable format
+# look back over this to understand how the .each method flow is working
+groups.each do |group|
+  puts group[:name]
+  puts "-------"
+  group[:members].each do |member|
+  puts "#{member [:first_name]} #{member[:last_name]}"
+  end
+  puts "*********"
+end
